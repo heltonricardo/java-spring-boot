@@ -4,7 +4,7 @@ necessidade. Para esse caso, nas dependências, inserimos: "Spring Boot
 DevTools" e "Spring Web". Depois de configurar clique em "Generate" para baixar
 o arquivo zip. Descompacte em uma pasta de sua preferência. Abra o Eclipse e
 clique com o botão direito em uma parte vazia da barra lateral esquerda (onde
-ficam os projetos) > Import... > Maven > Existing Maven Projects > Escolha a
+ficam os projetos) > Import... > Maven > Existing Maven Projects. Escolha a
 pasta que foi descompactada. Quando finalizar, o Eclipse iniciará o download
 das dependências e acrescentará automaticamente ao projeto.
 
