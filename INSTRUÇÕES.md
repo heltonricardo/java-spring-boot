@@ -17,3 +17,30 @@ normalmente, os de projetos Java. A localização padrão que o Maven usa é:
 src/main/java. Já em src/main/resources geralmente ficam os arquivos html, css
 e javascript. Esse padrão pode mudar conforme o artefato (o tipo do projeto que
 será criado) usado no Maven.
+
+===============================================================================
+
+Crie o esquema "springboot" no Workbench. Para instalar as dependências do JPA
+e MySQL basta inserir os códigos abaixo:
+
+-- No arquivo pom.xml:
+
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+ 
+<dependency>
+	<groupId>mysql</groupId>
+	<artifactId>mysql-connector-java</artifactId>
+</dependency>
+
+
+-- No arquivo application.properties:
+
+spring.datasource.url=jdbc:mysql://localhost:3306/springboot?verifyServerCertificate=false&useSSL=true&useTimezone=true&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=12345678
+ 
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
