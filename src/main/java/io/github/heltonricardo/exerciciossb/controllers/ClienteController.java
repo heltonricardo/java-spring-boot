@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.github.heltonricardo.exerciciossb.models.Cliente;
+import io.github.heltonricardo.exerciciossb.model.entities.Cliente;
 
 /*
  * Quando usamos RequestMapping em uma classe, todos os métodos a ela
