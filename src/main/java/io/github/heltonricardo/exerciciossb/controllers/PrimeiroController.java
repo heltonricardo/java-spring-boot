@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
  * usada como exemplo didático. Assim que usamos essa anotação, já é possível
  * acessar e testar através da URL padrão (localhost:8080), mas para
  * personalizar usamos a propriedade path, e no exemplo, poderemos testar
- * através da URL "localhost:8080/ola".
+ * através da URL "localhost:8080/ola". Lembrando que para funcionar, o método
+ * main precisa estar em execução.
  * 
  * O GetMapping já é uma anotação própria para requisições do tipo GET. Nela
  * também é possível acrescentar a propriedade path (que aceita mais de uma URL
