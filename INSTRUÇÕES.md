@@ -44,3 +44,8 @@ spring.datasource.password=12345678
  
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+
+===============================================================================
+
+Se houver algum erro do tipo “Field 'id' doesn't have a default value”, exclua
+o esquema "springboot" no banco e crie novamente.
