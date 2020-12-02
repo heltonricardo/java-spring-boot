@@ -1,9 +1,10 @@
 package io.github.heltonricardo.exerciciossb.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +32,11 @@ import io.github.heltonricardo.exerciciossb.model.repositories.ProdutoRepository
  * podemos receber simplesmente o próprio objeto (pense nas situações onde são
  * muitos atributos), isso ajuda na organização do código.
  * 
+ * Usamos a anotação Valid para que só seja executado o código da função se
+ * o produto for válido, ou seja, na classe produtos temos anotações para
+ * validar um produto, e ele somente será aceito na função se todas as
+ * validações estejam corretas.
+ * 
  */
 
 @RestController
@@ -41,7 +47,7 @@ public class ProdutoController {
 	private ProdutoRepository produtoRepository;
 
 	@PostMapping
-	public @ResponseBody Produto novoProduto(Produto produto) {
+	public @ResponseBody Produto novoProduto(@Valid Produto produto) {
 		produtoRepository.save(produto);
 		return produto;
 	}
