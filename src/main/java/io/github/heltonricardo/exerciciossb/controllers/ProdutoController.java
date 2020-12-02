@@ -26,6 +26,11 @@ import io.github.heltonricardo.exerciciossb.model.repositories.ProdutoRepository
  * 
  * A anotação ResponseBody não é necessária. Serve somente para deixar claro
  * que o Produto retornado faz parte do corpo da resposta.
+ * 
+ * Ao invés de recebermos cada atributo de um objeto no parâmetro da função,
+ * podemos receber simplesmente o próprio objeto (pense nas situações onde são
+ * muitos atributos), isso ajuda na organização do código.
+ * 
  */
 
 @RestController
@@ -36,12 +41,7 @@ public class ProdutoController {
 	private ProdutoRepository produtoRepository;
 
 	@PostMapping
-	public @ResponseBody Produto novoProduto(
-		   @RequestParam String nome,
-		   @RequestParam double preco,
-		   @RequestParam double desconto) {
-		
-		Produto produto = new Produto(nome, preco, desconto);
+	public @ResponseBody Produto novoProduto(Produto produto) {
 		produtoRepository.save(produto);
 		return produto;
 	}
