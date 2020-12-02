@@ -49,3 +49,13 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialec
 
 Se houver algum erro do tipo “Field 'id' doesn't have a default value”, exclua
 o esquema "springboot" no banco e crie novamente.
+
+===============================================================================
+
+Para adicionar a dependência Hibernate Validator, insira o código em pom.xml:
+
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>6.1.5.Final</version>
+</dependency>
