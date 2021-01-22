@@ -7,10 +7,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.heltonricardo.exerciciossb.model.entities.Produto;
@@ -42,6 +40,10 @@ import io.github.heltonricardo.exerciciossb.model.repositories.ProdutoRepository
  * validar um produto, e ele somente será aceito na função se todas as
  * validações estejam corretas.
  * 
+ * É possível usar mais de um método HTTP na mesma função, como foi feito em
+ * salvarProduto(). Basta usa @RequestMapping na anotação da função, passando
+ * o parâmetro "method" com os métodos HTTP desejados.
+ * 
  */
 
 @RestController
@@ -51,12 +53,6 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 
-	@PostMapping
-	public @ResponseBody Produto novoProduto(@Valid Produto produto) {
-		produtoRepository.save(produto);
-		return produto;
-	}
-	
 	@GetMapping
 	public Iterable<Produto> oberterProdutos() {
 		return produtoRepository.findAll();
@@ -67,8 +63,20 @@ public class ProdutoController {
 		return produtoRepository.findById(id);
 	}
 	
-	@PutMapping
-	public Produto alterarProduto(@Valid Produto produto) {
+//	@PostMapping
+//	public @ResponseBody Produto novoProduto(@Valid Produto produto) {
+//		produtoRepository.save(produto);
+//		return produto;
+//	}
+//	
+//	@PutMapping
+//	public Produto alterarProduto(@Valid Produto produto) {
+//		produtoRepository.save(produto);
+//		return produto;
+//	}
+	
+	@RequestMapping(method = {RequestMethod.POST, RequestMethod.PUT})
+	public Produto salvarProduto(@Valid Produto produto) {
 		produtoRepository.save(produto);
 		return produto;
 	}
