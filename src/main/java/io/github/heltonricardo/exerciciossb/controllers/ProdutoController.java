@@ -5,6 +5,9 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +47,10 @@ import io.github.heltonricardo.exerciciossb.model.repositories.ProdutoRepository
  * salvarProduto(). Basta usa @RequestMapping na anotação da função, passando
  * o parâmetro "method" com os métodos HTTP desejados.
  * 
+ * Geralmente função obterProdutos, como abaixo, não é disponibilizada pois
+ * pode retornar muitos elementos, congestionando/travando o banco de dados
+ * e/ou a aplicação.
+ * 
  */
 
 @RestController
@@ -54,8 +61,17 @@ public class ProdutoController {
 	private ProdutoRepository produtoRepository;
 
 	@GetMapping
-	public Iterable<Produto> oberterProdutos() {
+	public Iterable<Produto> obterProdutos() {
 		return produtoRepository.findAll();
+	}
+	
+	@GetMapping(path = "/pagina/{pg}/{qnt}")
+	public Iterable<Produto> obterProdutoPorPagina(
+			@PathVariable int pg, @PathVariable int qnt) {
+		pg = Math.max(pg, 0);
+		qnt = Math.min(qnt, 5);
+		Pageable page = PageRequest.of(pg, qnt);
+		return produtoRepository.findAll(page);
 	}
 	
 	@GetMapping(path = "/{id}")
@@ -79,5 +95,10 @@ public class ProdutoController {
 	public Produto salvarProduto(@Valid Produto produto) {
 		produtoRepository.save(produto);
 		return produto;
+	}
+	
+	@DeleteMapping(path = "/{id}")
+	public void excluirProduto(@PathVariable int id) {
+		produtoRepository.deleteById(id);
 	}
 }
