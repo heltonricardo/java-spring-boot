@@ -1,6 +1,6 @@
 package io.github.heltonricardo.exerciciossb.model.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import io.github.heltonricardo.exerciciossb.model.entities.Produto;
 
@@ -16,8 +16,17 @@ import io.github.heltonricardo.exerciciossb.model.entities.Produto;
  * fazer essa persistência. Nos generics de CrudRepository inserimos a classe
  * dos objetos que serão persistidos e o tipo Wrapper do identificador. Como em
  * produto usando "int", aqui usaremos "Integer".
+ * 
+ * public interface ProdutoRepository extends CrudRepository<Produto, Integer>
+ * {}
  */
 
-public interface ProdutoRepository extends CrudRepository<Produto, Integer> {
+/* 
+ * Alteramos de CrudRepository para PagingAndSortingRepository para que seja
+ * possível usar, além das funcionalidades do CRUD, resultados por paginação.
+ */
 
+public interface ProdutoRepository extends
+	PagingAndSortingRepository<Produto, Integer> {
+	
 }
