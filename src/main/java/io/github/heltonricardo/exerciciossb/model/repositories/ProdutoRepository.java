@@ -24,9 +24,16 @@ import io.github.heltonricardo.exerciciossb.model.entities.Produto;
 /* 
  * Alteramos de CrudRepository para PagingAndSortingRepository para que seja
  * possível usar, além das funcionalidades do CRUD, resultados por paginação.
+ * 
+ * O método declarado é implementado automaticamente pelo framework pois está
+ * usando uma nomenclatura da convensão do springboot. Ele já interpreta que
+ * quando é usando "findBy" no início, o método é de busca, então basta usar
+ * o nome do atributo corretamente, nesse caso "Nome", que ele implementará.
+ * Esses métodos são conhecidos como "derived query methods".
  */
 
 public interface ProdutoRepository extends
 	PagingAndSortingRepository<Produto, Integer> {
 	
+	public Iterable<Produto> findByNomeContainingIgnoreCase(String str);
 }
